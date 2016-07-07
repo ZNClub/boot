@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Welcome | S-boot</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.min.js"></script>
+
+<script>
+      var nameApp = angular.module('nameApp', []);
+      
+      nameApp.controller('NameCtrl', function ($scope){
+        $scope.firstName = 'nevz';
+        $scope.lastName = 'dz';
+      });
+      
+      nameApp.controller('CountryCtrl', function ($scope, $http){
+          $http.get('load').success(function(data) {
+            $scope.strings = data;
+          });
+       });
+      
+      
+      
+      
+</script>
+
+</head>
+<body ng-app="nameApp">
+
+<span id="header" th:text="${h}" />
+<br/>
+<div ng-controller="NameCtrl">
+ng data: Hello {{firstName}} {{lastName}}
+
+</div>
+
+<br/>
+<div ng-controller="CountryCtrl">
+JSON data:
+<br/>
+<ul ng-repeat="i in strings">
+	<li>{{i}}</li>
+</ul>
+</div>
+
+</body>
+</html>
